@@ -22,10 +22,11 @@ let choices = readdirSync(resultsPath)
 
 const bold = (writeBold, str) => (writeBold ? chalk.bold(str) : str);
 
+const options = commander.opts();
 if (!choices.length) {
   console.log(chalk.red("Benchmark to gather some results to compare."));
-} else if (commander.table && !commander.percentage) {
-  const tableSeparatorChars = commander.commandlineMdTable
+} else if (options.table && !options.percentage) {
+  const tableSeparatorChars = options.commandlineMdTable
     ? {
         top: "",
         "top-left": "",
@@ -48,7 +49,7 @@ if (!choices.length) {
     chars: tableSeparatorChars,
     head: ["Server", "Requests/s", "Latency", "Throughput/Mb"],
   });
-  if (commander.commandlineMdTable) {
+  if (options.commandlineMdTable) {
     table.push([":--", "--:", ":-:", "--:"]);
   }
 
@@ -73,7 +74,7 @@ if (!choices.length) {
       bold(
         beBold,
         chalk.blue(
-          commander.commandlineMdTable
+          options.commandlineMdTable
             ? `[${data.server}](https://github.com/benawad/node-graphql-benchmarks/tree/master/benchmarks/${data.server}.js)`
             : data.server,
         ),
@@ -85,7 +86,7 @@ if (!choices.length) {
   });
 
   console.log(table.toString());
-} else if (commander.percentage) {
+} else if (options.percentage) {
   const data = [];
   choices.forEach((file) => {
     const content = readFileSync(`${resultsPath}/${file}.json`);

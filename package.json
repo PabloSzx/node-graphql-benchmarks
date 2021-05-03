@@ -28,7 +28,10 @@
   "license": "MIT",
   "dependencies": {
     "@benzene/http": "^0.0.3",
+    "@envelop/parser-cache": "^0.1.0",
+    "@envelop/validation-cache": "^0.1.0",
     "@graphql-tools/schema": "^7.1.2",
+    "@pablosz/envelop-app": "^0.1.13",
     "apollo-opentracing": "^2.1.0",
     "apollo-server-express": "^2.19.2",
     "apollo-server-fastify": "^3.0.0-alpha.3",
